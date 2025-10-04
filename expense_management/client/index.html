@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Management</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="notification"></div>
+    <div id="app-container">
+      <section id="auth-view" class="view">
+        <div id="login-form-container">
+          <h2>Login</h2>
+          <form id="login-form">
+            <input type="email" id="login-email" placeholder="Email" required />
+            <input
+              type="password"
+              id="login-password"
+              placeholder="Password"
+              required
+            />
+            <button type="submit">Login</button>
+          </form>
+          <p>
+            First time?
+            <a href="#" id="show-register-link">Register your company</a>
+          </p>
+        </div>
+        <div id="register-form-container" style="display: none">
+          <h2>Register Company</h2>
+          <form id="register-form">
+            <input
+              type="text"
+              id="register-name"
+              placeholder="Your Name (Admin)"
+              required
+            />
+            <input
+              type="email"
+              id="register-email"
+              placeholder="Your Email"
+              required
+            />
+            <input
+              type="password"
+              id="register-password"
+              placeholder="Password"
+              required
+            />
+            <input
+              type="text"
+              id="register-company"
+              placeholder="Company Name"
+              required
+            />
+            <input
+              type="text"
+              id="register-country"
+              placeholder="Country Code (e.g., US, IN)"
+              required
+            />
+            <button type="submit">Register</button>
+          </form>
+          <p>
+            Already have an account? <a href="#" id="show-login-link">Login</a>
+          </p>
+        </div>
+      </section>
+
+      <section id="app-view" class="view" style="display: none">
+        <header>
+          <h1>Welcome, <span id="user-name"></span>!</h1>
+          <nav>
+            <button id="logout-btn">Logout</button>
+          </nav>
+        </header>
+
+        <main id="dashboard-content">
+          <div id="employee-dashboard" class="dashboard" style="display: none">
+            <h3>Submit New Expense</h3>
+            <form id="expense-form">
+              <label for="receipt-upload">Upload Receipt (Optional):</label>
+              <input type="file" id="receipt-upload" accept="image/*" />
+              <hr />
+              <input
+                type="number"
+                id="expense-amount"
+                placeholder="Amount"
+                required
+                step="0.01"
+              />
+              <input
+                type="text"
+                id="expense-currency"
+                placeholder="Currency (e.g., USD)"
+                required
+              />
+              <input
+                type="text"
+                id="expense-category"
+                placeholder="Category (e.g., Travel)"
+                required
+              />
+              <textarea
+                id="expense-description"
+                placeholder="Description"
+              ></textarea>
+              <button type="submit">Submit Expense</button>
+            </form>
+            <hr />
+            <h3>My Expense History</h3>
+            <div id="expense-history-table"></div>
+          </div>
+
+          <div id="manager-dashboard" class="dashboard" style="display: none">
+            <h3>Pending Approvals</h3>
+            <div id="pending-approvals-table"></div>
+          </div>
+
+          <div id="admin-dashboard" class="dashboard" style="display: none">
+            <h3>User Management</h3>
+            <p>
+              Designate one user as the 'Special Approver' whose approval is
+              final.
+            </p>
+            <div id="user-management-table"></div>
+          </div>
+        </main>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="app.js"></script>
+
+    <div id="comment-modal" class="modal-backdrop" style="display: none">
+      <div class="modal-content">
+        <h3>Add Comments (Optional)</h3>
+        <textarea id="comment-textarea" rows="4"></textarea>
+        <div class="modal-actions">
+          <button id="modal-cancel-btn">Cancel</button>
+          <button id="modal-submit-btn">Submit</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
